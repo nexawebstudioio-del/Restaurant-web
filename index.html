@@ -454,7 +454,7 @@
   }
   .experience-wrap{
     display:grid;
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: 1fr;
     min-height: 640px;
   }
   .experience-copy{
@@ -482,18 +482,6 @@
   .feature-pill:hover{border-color: var(--gold-soft); transform: translateY(-4px);}
   .feature-pill .ficon{font-size:1.6rem; margin-bottom: 10px; color: var(--gold);}
   .feature-pill span{display:block; font-size: 0.74rem; letter-spacing:0.18em; text-transform:uppercase; color: var(--muted);}
-  .experience-visual{
-    position: relative;
-    background-size: cover; background-position: center;
-    overflow:hidden;
-  }
-  .experience-visual img{width:100%; height:100%; object-fit:cover; min-height: 400px;}
-  .experience-visual::before{
-    content:"";
-    position:absolute; inset:0;
-    background: linear-gradient(90deg, rgba(6,18,14,0.5), transparent 30%);
-    z-index:1;
-  }
 
   /* ===== Full Menu ===== */
   .menu-search{
@@ -669,7 +657,7 @@
   }
   .form-group select{
     appearance:none;
-    background-image: url('images/rooftop-dining.jpg');
+    background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="14" height="9" viewBox="0 0 14 9" fill="none"%3E%3Cpath d="M1 1L7 7L13 1" stroke="%23e8b86d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/%3E%3C/svg%3E');
     background-repeat: no-repeat; background-position: right 18px center;
     cursor:pointer;
   }
@@ -810,9 +798,7 @@
     .about-visual{order:-1;}
     .dish-grid{grid-template-columns: repeat(2, 1fr);}
     .cocktail-grid{grid-template-columns: repeat(2, 1fr);}
-    .experience-wrap{grid-template-columns: 1fr;}
     .experience-copy{padding: 90px 36px;}
-    .experience-visual img{min-height: 320px;}
     .review-grid{grid-template-columns: 1fr;}
     .footer-grid{grid-template-columns: 1fr 1fr; gap:40px;}
   }
@@ -841,6 +827,7 @@
     .res-form{padding: 28px;}
     .experience-copy{padding: 70px 24px;}
     .experience-features{flex-direction:column;}
+    .experience-wrap{min-height: auto;}
     .footer-grid{grid-template-columns: 1fr; gap: 36px;}
     .footer-bottom{flex-direction:column; align-items:flex-start;}
     .reviews-header{gap:24px;}
@@ -1082,9 +1069,6 @@
         <div class="feature-pill"><div class="ficon">&#10024;</div><span>Romantic Vibe</span></div>
       </div>
       <a href="#reservation" class="btn btn-primary">Hold My Table</a>
-    </div>
-    <div class="experience-visual reveal">
-      <img src="https://images.unsplash.com/photo-1571805618894-3a7af6caf1c0?q=80&w=1200&auto=format&fit=crop" alt="String lights and lanterns hanging over the rooftop garden at dusk">
     </div>
   </div>
 </section>
