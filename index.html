@@ -1,0 +1,2026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SO. The Sky Kitchen | Rooftop Dining in Jubilee Hills, Hyderabad</title>
+<meta name="description" content="SO. The Sky Kitchen — a garden-style rooftop restaurant in Jubilee Hills, Hyderabad serving North Indian, Chinese & Continental cuisine under candlelight and the skyline.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Marcellus&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep: #06120e;
+    --bg-panel: #0c1e17;
+    --bg-panel-2: #102720;
+    --emerald: #1f4d3a;
+    --emerald-soft: rgba(31,77,58,0.35);
+    --gold: #e8b86d;
+    --gold-soft: rgba(232,184,109,0.18);
+    --cream: #f6efe2;
+    --muted: #aab9b0;
+    --line: rgba(232,184,109,0.16);
+    --shadow: 0 20px 60px rgba(0,0,0,0.45);
+    --radius: 18px;
+    --display: "Cormorant Garamond", serif;
+    --serif-2: "Marcellus", serif;
+    --body: "Jost", sans-serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background: var(--bg-deep);
+    color: var(--cream);
+    font-family: var(--body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body::before{
+    content:"";
+    position: fixed; inset:0;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(31,77,58,0.35), transparent 40%),
+      radial-gradient(circle at 85% 30%, rgba(232,184,109,0.06), transparent 45%),
+      linear-gradient(180deg, #06120e 0%, #081a14 50%, #06120e 100%);
+    z-index:-2;
+    pointer-events:none;
+  }
+
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .container{max-width:1180px; margin:0 auto; padding:0 24px;}
+
+  /* ===== Reveal ===== */
+  .reveal{
+    opacity:0; transform: translateY(28px);
+    transition: opacity 0.9s cubic-bezier(.16,1,.3,1), transform 0.9s cubic-bezier(.16,1,.3,1);
+  }
+  .reveal.visible{opacity:1; transform: translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+  }
+
+  /* ===== Eyebrow / Labels ===== */
+  .eyebrow{
+    font-family: var(--serif-2);
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    color: var(--gold);
+    display:flex;
+    align-items:center;
+    gap: 14px;
+  }
+  .eyebrow::before{
+    content:"";
+    display:inline-block;
+    width: 28px; height:1px;
+    background: var(--gold);
+    opacity:0.6;
+  }
+
+  /* ===== Navbar ===== */
+  .navbar{
+    position: fixed; top:0; left:0; right:0;
+    z-index: 1000;
+    padding: 18px 0;
+    transition: background 0.4s ease, padding 0.4s ease, border-color 0.4s ease;
+    border-bottom: 1px solid transparent;
+  }
+  .navbar.scrolled{
+    background: rgba(6,18,14,0.86);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .logo{
+    font-family: var(--display);
+    font-size: 1.9rem;
+    font-weight:600;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+  }
+  .logo span{color: var(--cream);}
+  .nav-links{
+    display:flex; align-items:center; gap: 38px;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .nav-links a{
+    position: relative; padding: 4px 0; color: var(--muted);
+    transition: color 0.3s ease;
+  }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; bottom:-4px;
+    width:0; height:1px; background: var(--gold);
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover{color: var(--cream);}
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    border:1px solid var(--gold);
+    padding: 10px 24px;
+    border-radius: 999px;
+    color: var(--gold) !important;
+    font-size: 0.78rem;
+  }
+  .nav-cta::after{display:none;}
+  .nav-cta:hover{background: var(--gold); color: var(--bg-deep) !important;}
+
+  .menu-toggle{
+    display:none;
+    flex-direction:column; gap:5px;
+    background:none; border:none; cursor:pointer;
+    padding: 8px;
+    z-index: 1100;
+  }
+  .menu-toggle span{
+    width: 26px; height: 1.5px; background: var(--cream);
+    transition: all 0.3s ease;
+  }
+  .menu-toggle.active span:nth-child(1){transform: translateY(7px) rotate(45deg);}
+  .menu-toggle.active span:nth-child(2){opacity:0;}
+  .menu-toggle.active span:nth-child(3){transform: translateY(-7px) rotate(-45deg);}
+
+  /* ===== Hero ===== */
+  .hero{
+    position: relative;
+    min-height: 100vh;
+    display:flex; align-items:center;
+    padding: 140px 0 80px;
+    overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute; inset:0; z-index:-1;
+    background:
+      linear-gradient(180deg, rgba(6,18,14,0.35) 0%, rgba(6,18,14,0.55) 55%, rgba(6,18,14,0.96) 100%),
+      url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop');
+    background-size: cover; background-position: center;
+  }
+  .hero-lanterns{
+    position:absolute; inset:0; z-index:-1; opacity:0.5;
+    pointer-events:none;
+  }
+  .hero-content{
+    position: relative; z-index:1;
+    max-width: 760px;
+  }
+  .hero .eyebrow{margin-bottom: 24px;}
+  .hero h1{
+    font-family: var(--display);
+    font-size: clamp(2.8rem, 7vw, 5.6rem);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: 0.01em;
+    margin-bottom: 28px;
+  }
+  .hero h1 em{
+    font-style: italic;
+    background: linear-gradient(120deg, var(--gold) 0%, #fce6bb 50%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero p{
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 520px;
+    margin-bottom: 44px;
+    font-weight:300;
+  }
+  .hero-actions{display:flex; gap: 20px; flex-wrap:wrap;}
+
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding: 17px 36px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight:500;
+    cursor:pointer;
+    border: 1px solid transparent;
+    transition: transform 0.35s cubic-bezier(.16,1,.3,1), box-shadow 0.35s ease, background 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+    white-space: nowrap;
+  }
+  .btn-primary{
+    background: linear-gradient(135deg, #f0c87e, #d99e4c);
+    color: #1c1206;
+    box-shadow: 0 10px 30px rgba(232,184,109,0.25);
+  }
+  .btn-primary:hover{transform: translateY(-3px); box-shadow: 0 16px 40px rgba(232,184,109,0.35);}
+  .btn-ghost{
+    border: 1px solid rgba(246,239,226,0.28);
+    color: var(--cream);
+    background: rgba(255,255,255,0.02);
+  }
+  .btn-ghost:hover{
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-3px);
+  }
+
+  .hero-scroll{
+    position:absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:10px;
+    color: var(--muted); font-size: 0.7rem; letter-spacing:0.3em; text-transform:uppercase;
+    z-index:2;
+  }
+  .hero-scroll .line{
+    width:1px; height: 40px;
+    background: linear-gradient(180deg, var(--gold), transparent);
+    animation: scrollPulse 2.4s ease-in-out infinite;
+  }
+  @keyframes scrollPulse{
+    0%, 100% { transform: scaleY(1); opacity: 0.6; }
+    50% { transform: scaleY(1.3); opacity: 1; }
+  }
+
+  /* ===== Quick Info Strip ===== */
+  .info-strip{
+    position: relative; z-index: 5;
+    margin-top: -90px;
+  }
+  .info-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: rgba(16,39,32,0.7);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow:hidden;
+  }
+  .info-item{
+    padding: 32px 28px;
+    border-right: 1px solid var(--line);
+    display:flex; gap:16px; align-items:flex-start;
+  }
+  .info-item:last-child{border-right:none;}
+  .info-icon{
+    flex-shrink:0;
+    width: 42px; height:42px;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    color: var(--gold);
+  }
+  .info-icon svg{width:18px; height:18px;}
+  .info-label{
+    font-size: 0.68rem; letter-spacing: 0.22em; text-transform:uppercase;
+    color: var(--muted); margin-bottom: 6px;
+  }
+  .info-value{
+    font-family: var(--serif-2);
+    font-size: 1.08rem;
+    color: var(--cream);
+    line-height:1.35;
+  }
+  .info-item.offer .info-value{color: var(--gold);}
+
+  /* ===== Section base ===== */
+  section{position: relative; padding: 130px 0;}
+  .section-head{
+    text-align:center;
+    max-width: 760px;
+    margin: 0 auto 70px;
+  }
+  .section-head .eyebrow{justify-content:center; margin-bottom: 22px;}
+  .section-head .eyebrow::after{
+    content:"";
+    display:inline-block;
+    width: 28px; height:1px;
+    background: var(--gold);
+    opacity:0.6;
+  }
+  .section-head h2{
+    font-family: var(--display);
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight:600;
+    line-height:1.15;
+    margin-bottom: 22px;
+  }
+  .section-head p{color: var(--muted); font-size:1.05rem; font-weight:300;}
+
+  /* ===== About ===== */
+  .about{
+    padding-top: 180px;
+  }
+  .about-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items:center;
+  }
+  .about-visual{
+    position: relative;
+    aspect-ratio: 4/5;
+    border-radius: var(--radius);
+    overflow:hidden;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+  }
+  .about-visual img{width:100%; height:100%; object-fit:cover;}
+  .about-visual::after{
+    content:"";
+    position:absolute; inset:0;
+    background: linear-gradient(180deg, transparent 50%, rgba(6,18,14,0.85) 100%);
+  }
+  .about-tag{
+    position:absolute; bottom: 26px; left: 26px; right:26px; z-index:2;
+    font-family: var(--serif-2);
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .about-copy h2{
+    font-family: var(--display);
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    line-height:1.18;
+    font-weight:600;
+    margin-bottom: 26px;
+  }
+  .about-copy h2 .accent{color: var(--gold);}
+  .about-copy p{color: var(--muted); margin-bottom: 22px; font-weight:300; font-size: 1.02rem;}
+  .about-stats{
+    display:flex; gap: 40px; margin-top: 36px; flex-wrap:wrap;
+  }
+  .about-stat strong{
+    display:block; font-family: var(--display); font-size: 2.2rem; color: var(--gold); font-weight:600;
+  }
+  .about-stat span{font-size: 0.72rem; letter-spacing: 0.2em; text-transform:uppercase; color: var(--muted);}
+
+  /* ===== Signature Dishes ===== */
+  .dish-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  .dish-card{
+    border-radius: var(--radius);
+    overflow:hidden;
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    transition: transform 0.5s cubic-bezier(.16,1,.3,1), border-color 0.5s ease, box-shadow 0.5s ease;
+  }
+  .dish-card:hover{
+    transform: translateY(-10px);
+    border-color: var(--gold-soft);
+    box-shadow: var(--shadow);
+  }
+  .dish-img{
+    position:relative;
+    aspect-ratio: 4/3;
+    overflow:hidden;
+  }
+  .dish-img img{width:100%; height:100%; object-fit:cover; transition: transform 0.7s ease;}
+  .dish-card:hover .dish-img img{transform: scale(1.07);}
+  .dish-img::after{
+    content:""; position:absolute; inset:0;
+    background: linear-gradient(180deg, transparent 55%, rgba(6,18,14,0.9) 100%);
+  }
+  .dish-tag{
+    position:absolute; top:18px; left:18px; z-index:2;
+    font-size: 0.65rem; letter-spacing: 0.22em; text-transform:uppercase;
+    color: var(--gold);
+    background: rgba(6,18,14,0.55);
+    padding: 6px 14px; border-radius: 999px;
+    border: 1px solid var(--gold-soft);
+  }
+  .dish-body{padding: 24px 26px 28px;}
+  .dish-title-row{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    gap: 16px; margin-bottom: 10px;
+  }
+  .dish-title-row h3{
+    font-family: var(--display); font-size: 1.5rem; font-weight:600;
+  }
+  .dish-price{
+    font-family: var(--serif-2); color: var(--gold); font-size: 1.05rem; white-space:nowrap;
+  }
+  .dish-body p{color: var(--muted); font-size: 0.92rem; font-weight:300;}
+
+  /* ===== Cocktails ===== */
+  .cocktail-section{
+    background: linear-gradient(180deg, rgba(31,77,58,0.18), transparent 60%);
+  }
+  .cocktail-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow:hidden;
+  }
+  .cocktail-card{
+    background: var(--bg-panel);
+    padding: 44px 32px;
+    transition: background 0.4s ease;
+    position:relative;
+  }
+  .cocktail-card:hover{background: var(--bg-panel-2);}
+  .cocktail-icon{
+    width: 48px; height:48px;
+    margin-bottom: 24px;
+    color: var(--gold);
+  }
+  .cocktail-icon svg{width:100%; height:100%;}
+  .cocktail-card h3{
+    font-family: var(--display); font-size: 1.55rem; font-weight:600; margin-bottom: 10px;
+  }
+  .cocktail-card p{color: var(--muted); font-size: 0.9rem; font-weight:300; margin-bottom: 18px; min-height: 44px;}
+  .cocktail-price{
+    font-family: var(--serif-2); color: var(--gold); font-size: 1.05rem;
+    display:flex; align-items:center; gap:10px;
+  }
+  .cocktail-price::before{
+    content:""; width: 18px; height:1px; background: var(--gold); opacity:0.5;
+  }
+
+  /* ===== Experience ===== */
+  .experience{
+    padding: 0;
+  }
+  .experience-wrap{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    min-height: 640px;
+  }
+  .experience-copy{
+    padding: 130px 60px;
+    display:flex; flex-direction:column; justify-content:center;
+    background: var(--bg-panel);
+  }
+  .experience-copy h2{
+    font-family: var(--display); font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight:600; line-height:1.16; margin-bottom: 24px; max-width: 520px;
+  }
+  .experience-copy p{color: var(--muted); font-size: 1.02rem; font-weight:300; max-width: 480px; margin-bottom: 36px;}
+  .experience-features{
+    display:flex; gap: 18px; flex-wrap:wrap; margin-bottom: 40px;
+  }
+  .feature-pill{
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px 26px;
+    text-align:center;
+    flex:1; min-width: 140px;
+    background: rgba(255,255,255,0.02);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+  .feature-pill:hover{border-color: var(--gold-soft); transform: translateY(-4px);}
+  .feature-pill .ficon{font-size:1.6rem; margin-bottom: 10px; color: var(--gold);}
+  .feature-pill span{display:block; font-size: 0.74rem; letter-spacing:0.18em; text-transform:uppercase; color: var(--muted);}
+  .experience-visual{
+    position: relative;
+    background-size: cover; background-position: center;
+    overflow:hidden;
+  }
+  .experience-visual img{width:100%; height:100%; object-fit:cover; min-height: 400px;}
+  .experience-visual::before{
+    content:"";
+    position:absolute; inset:0;
+    background: linear-gradient(90deg, rgba(6,18,14,0.5), transparent 30%);
+    z-index:1;
+  }
+
+  /* ===== Full Menu ===== */
+  .menu-search{
+    max-width: 480px; margin: 0 auto 56px;
+    position: relative;
+  }
+  .menu-search input{
+    width:100%;
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 18px 26px 18px 54px;
+    color: var(--cream);
+    font-family: var(--body);
+    font-size: 0.95rem;
+    outline:none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .menu-search input::placeholder{color: var(--muted);}
+  .menu-search input:focus{border-color: var(--gold); box-shadow: 0 0 0 4px var(--gold-soft);}
+  .menu-search svg{
+    position:absolute; left: 22px; top: 50%; transform: translateY(-50%);
+    width: 18px; height:18px; color: var(--muted); pointer-events:none;
+  }
+
+  .menu-tabs{
+    display:flex; justify-content:center; gap: 14px; margin-bottom: 60px; flex-wrap:wrap;
+  }
+  .menu-tab{
+    padding: 13px 32px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--muted);
+    font-family: var(--body);
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor:pointer;
+    transition: all 0.35s ease;
+  }
+  .menu-tab.active{
+    background: linear-gradient(135deg, #f0c87e, #d99e4c);
+    color: #1c1206;
+    border-color: transparent;
+  }
+  .menu-tab:not(.active):hover{border-color: var(--gold-soft); color: var(--cream);}
+
+  .menu-panel{display:none;}
+  .menu-panel.active{display:block;}
+
+  .menu-category{
+    margin-bottom: 14px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow:hidden;
+    background: var(--bg-panel);
+  }
+  .menu-category-head{
+    display:flex; justify-content:space-between; align-items:center;
+    padding: 26px 30px;
+    cursor:pointer;
+    user-select:none;
+    transition: background 0.3s ease;
+  }
+  .menu-category-head:hover{background: var(--bg-panel-2);}
+  .menu-category-title{
+    font-family: var(--display); font-size: 1.6rem; font-weight:600; color: var(--gold);
+  }
+  .menu-category-sub{
+    font-size: 0.8rem; color: var(--muted); font-style:italic; margin-top: 4px;
+    font-family: var(--display);
+  }
+  .menu-category-toggle{
+    width: 34px; height:34px; border-radius:50%;
+    border: 1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+    transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s ease;
+    color: var(--gold);
+  }
+  .menu-category.open .menu-category-toggle{transform: rotate(45deg); border-color: var(--gold);}
+  .menu-category-body{
+    max-height:0;
+    overflow:hidden;
+    transition: max-height 0.5s cubic-bezier(.16,1,.3,1);
+  }
+  .menu-category.open .menu-category-body{max-height: 3000px;}
+  .menu-items{padding: 0 30px 28px;}
+  .menu-item{
+    display:flex; justify-content:space-between; gap: 20px;
+    padding: 18px 0;
+    border-top: 1px solid var(--line);
+  }
+  .menu-item:first-child{border-top:none;}
+  .menu-item-name{
+    font-family: var(--serif-2); font-size: 1.05rem; color: var(--cream); margin-bottom: 6px;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .veg-tag{
+    font-size: 0.62rem; letter-spacing: 0.1em; text-transform:uppercase;
+    padding: 3px 9px; border-radius: 999px; font-family: var(--body); font-weight:500;
+    border: 1px solid currentColor;
+  }
+  .veg-tag.veg{color:#7cd98a; background: rgba(124,217,138,0.08);}
+  .veg-tag.nonveg{color:#e08a7a; background: rgba(224,138,122,0.08);}
+  .menu-item-desc:empty{display:none;}
+  .menu-item-desc{color: var(--muted); font-size: 0.88rem; font-weight:300; max-width: 520px;}
+  .menu-item-price{
+    font-family: var(--serif-2); color: var(--gold); font-size: 1.05rem; white-space:nowrap; padding-top:2px;
+  }
+  .menu-item.hidden{display:none;}
+  .menu-no-results{
+    text-align:center; color: var(--muted); padding: 40px 0; display:none; font-style:italic; font-family: var(--display); font-size:1.2rem;
+  }
+
+  /* ===== Reservation ===== */
+  .reservation{
+    background: var(--bg-panel);
+    position: relative;
+    overflow:hidden;
+  }
+  .reservation::before{
+    content:"";
+    position:absolute; top:-200px; right:-200px;
+    width: 500px; height:500px;
+    background: radial-gradient(circle, var(--emerald-soft), transparent 70%);
+    pointer-events:none;
+  }
+  .res-grid{
+    display:grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 70px;
+    align-items:start;
+  }
+  .res-copy h2{
+    font-family: var(--display); font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight:600; line-height:1.16; margin-bottom:22px;
+  }
+  .res-copy p{color: var(--muted); font-weight:300; margin-bottom: 30px;}
+  .res-detail{
+    display:flex; gap:16px; align-items:flex-start; margin-bottom: 22px;
+  }
+  .res-detail .ricon{
+    color: var(--gold); flex-shrink:0; width:22px; margin-top:3px;
+  }
+  .res-detail .ricon svg{width:100%; height:100%;}
+  .res-detail div strong{display:block; font-family: var(--serif-2); margin-bottom:2px; font-weight:500;}
+  .res-detail div span{color: var(--muted); font-size:0.9rem;}
+
+  .res-form{
+    background: rgba(8,22,17,0.7);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 44px;
+    box-shadow: var(--shadow);
+  }
+  .form-row{display:grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-bottom: 22px;}
+  .form-group{margin-bottom: 22px;}
+  .form-group label{
+    display:block; font-size: 0.7rem; letter-spacing: 0.22em; text-transform:uppercase; color: var(--gold); margin-bottom: 10px;
+  }
+  .form-group input, .form-group select, .form-group textarea{
+    width:100%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 15px 18px;
+    color: var(--cream);
+    font-family: var(--body);
+    font-size: 0.95rem;
+    outline:none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .form-group select{
+    appearance:none;
+    background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="14" height="9" viewBox="0 0 14 9" fill="none"%3E%3Cpath d="M1 1L7 7L13 1" stroke="%23e8b86d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/%3E%3C/svg%3E');
+    background-repeat: no-repeat; background-position: right 18px center;
+    cursor:pointer;
+  }
+  .form-group textarea{resize: vertical; min-height: 110px; font-family: var(--body);}
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus{
+    border-color: var(--gold); box-shadow: 0 0 0 4px var(--gold-soft);
+  }
+  .form-group input::placeholder, .form-group textarea::placeholder{color: rgba(170,185,176,0.6);}
+  .res-submit{width:100%; border:none; margin-top: 6px;}
+  .form-note{
+    text-align:center; color: var(--muted); font-size: 0.8rem; margin-top: 18px; font-style:italic; font-family: var(--display);
+  }
+  .form-success{
+    display:none; text-align:center; padding: 50px 20px;
+  }
+  .form-success.show{display:block;}
+  .form-success svg{width:60px; height:60px; color: var(--gold); margin: 0 auto 22px;}
+  .form-success h3{font-family: var(--display); font-size: 1.8rem; margin-bottom: 12px;}
+  .form-success p{color: var(--muted);}
+
+  /* ===== Reviews ===== */
+  .reviews-header{
+    display:flex; align-items:center; justify-content:center; gap: 40px; margin-bottom: 60px; flex-wrap:wrap;
+    text-align:center;
+  }
+  .rating-block strong{
+    font-family: var(--display); font-size: 4rem; color: var(--gold); font-weight:600; line-height:1;
+  }
+  .rating-stars{color: var(--gold); font-size: 1.3rem; margin: 10px 0 6px; letter-spacing: 4px;}
+  .rating-block span{color: var(--muted); font-size: 0.85rem; letter-spacing:0.15em; text-transform:uppercase;}
+  .review-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+  }
+  .review-card{
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 32px;
+    transition: transform 0.4s ease, border-color 0.4s ease;
+  }
+  .review-card:hover{transform: translateY(-6px); border-color: var(--gold-soft);}
+  .review-stars{color: var(--gold); margin-bottom: 16px; letter-spacing: 3px;}
+  .review-card p{color: var(--muted); font-size: 0.94rem; font-weight:300; margin-bottom: 22px; font-style:italic;}
+  .review-author{display:flex; align-items:center; gap: 14px;}
+  .review-avatar{
+    width: 44px; height:44px; border-radius:50%;
+    background: linear-gradient(135deg, var(--emerald), #2d6b50);
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--display); font-weight:600; color: var(--gold);
+    flex-shrink:0;
+  }
+  .review-author strong{display:block; font-family: var(--serif-2); font-weight:500; font-size: 0.95rem;}
+  .review-author span{color: var(--muted); font-size: 0.78rem;}
+
+  /* ===== Contact ===== */
+  .contact-grid{
+    display:grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items:center;
+  }
+  .contact-list{display:flex; flex-direction:column; gap: 28px; margin-top: 36px;}
+  .contact-item{display:flex; gap:18px; align-items:flex-start;}
+  .contact-item .cicon{
+    width: 46px; height:46px; border-radius:50%; flex-shrink:0;
+    border: 1px solid var(--gold); display:flex; align-items:center; justify-content:center; color: var(--gold);
+  }
+  .contact-item .cicon svg{width:18px; height:18px;}
+  .contact-item h4{font-family: var(--serif-2); margin-bottom: 4px; font-weight:500;}
+  .contact-item p{color: var(--muted); font-size: 0.92rem; font-weight:300;}
+  .contact-item a{color: var(--muted); transition: color 0.3s ease;}
+  .contact-item a:hover{color: var(--gold);}
+
+  .map-frame{
+    border-radius: var(--radius);
+    overflow:hidden;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    aspect-ratio: 4/3.4;
+  }
+  .map-frame iframe{width:100%; height:100%; border:0; filter: invert(0.92) hue-rotate(180deg) brightness(0.95) contrast(0.9);}
+
+  /* ===== Footer ===== */
+  footer{
+    padding: 70px 0 36px;
+    border-top: 1px solid var(--line);
+  }
+  .footer-grid{
+    display:grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 50px; margin-bottom: 60px;
+  }
+  .footer-logo{
+    font-family: var(--display); font-size: 2.2rem; color: var(--gold); letter-spacing:0.12em; margin-bottom: 18px; font-weight:600;
+  }
+  .footer-logo span{color: var(--cream);}
+  .footer-about p{color: var(--muted); font-size: 0.9rem; font-weight:300; max-width: 320px;}
+  .footer-col h5{
+    font-size: 0.72rem; letter-spacing: 0.24em; text-transform:uppercase; color: var(--gold); margin-bottom: 20px;
+  }
+  .footer-col a, .footer-col p{
+    display:block; color: var(--muted); font-size: 0.9rem; margin-bottom: 12px; font-weight:300; transition: color 0.3s ease;
+  }
+  .footer-col a:hover{color: var(--cream);}
+  .footer-social{display:flex; gap: 14px; margin-top: 10px;}
+  .footer-social a{
+    width: 38px; height:38px; border-radius:50%; border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; color: var(--gold);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+  .footer-social a:hover{border-color: var(--gold); transform: translateY(-3px);}
+  .footer-social svg{width:16px; height:16px;}
+  .footer-bottom{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top: 30px; border-top: 1px solid var(--line);
+    font-size: 0.8rem; color: var(--muted); flex-wrap:wrap; gap:14px;
+  }
+
+  /* ===== Back to top ===== */
+  .back-to-top{
+    position: fixed; bottom: 30px; right: 30px; z-index: 999;
+    width: 52px; height:52px; border-radius:50%;
+    background: rgba(16,39,32,0.8);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    opacity:0; pointer-events:none; transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease, background 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+  .back-to-top.show{opacity:1; pointer-events:auto; transform: translateY(0);}
+  .back-to-top:hover{background: var(--gold); color: var(--bg-deep);}
+  .back-to-top svg{width:18px; height:18px;}
+
+  /* ===== Responsive ===== */
+  @media (max-width: 980px){
+    .info-grid{grid-template-columns: 1fr 1fr;}
+    .info-item{border-right:1px solid var(--line); border-bottom:1px solid var(--line);}
+    .info-item:nth-child(2n){border-right:none;}
+    .info-item:nth-child(3), .info-item:nth-child(4){border-bottom:none;}
+    .about-grid, .contact-grid, .res-grid{grid-template-columns: 1fr; gap: 50px;}
+    .about-visual{order:-1;}
+    .dish-grid{grid-template-columns: repeat(2, 1fr);}
+    .cocktail-grid{grid-template-columns: repeat(2, 1fr);}
+    .experience-wrap{grid-template-columns: 1fr;}
+    .experience-copy{padding: 90px 36px;}
+    .experience-visual img{min-height: 320px;}
+    .review-grid{grid-template-columns: 1fr;}
+    .footer-grid{grid-template-columns: 1fr 1fr; gap:40px;}
+  }
+
+  @media (max-width: 760px){
+    .nav-links{
+      position: fixed; top:0; right:0; height:100vh; width: min(78vw, 320px);
+      background: rgba(8,22,17,0.97);
+      backdrop-filter: blur(20px);
+      flex-direction:column; justify-content:center; align-items:flex-start;
+      gap: 32px; padding: 0 44px;
+      transform: translateX(100%);
+      transition: transform 0.45s cubic-bezier(.16,1,.3,1);
+      border-left: 1px solid var(--line);
+    }
+    .nav-links.open{transform: translateX(0);}
+    .menu-toggle{display:flex;}
+    .nav-cta{align-self:flex-start;}
+    .info-grid{grid-template-columns: 1fr;}
+    .info-item{border-right:none !important; border-bottom: 1px solid var(--line);}
+    .info-item:last-child{border-bottom:none;}
+    section{padding: 90px 0;}
+    .about{padding-top: 130px;}
+    .dish-grid, .cocktail-grid{grid-template-columns: 1fr;}
+    .form-row{grid-template-columns: 1fr;}
+    .res-form{padding: 28px;}
+    .experience-copy{padding: 70px 24px;}
+    .experience-features{flex-direction:column;}
+    .footer-grid{grid-template-columns: 1fr; gap: 36px;}
+    .footer-bottom{flex-direction:column; align-items:flex-start;}
+    .reviews-header{gap:24px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a href="#home" class="logo">SO<span>.</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#dishes" class="nav-link">Dishes</a>
+      <a href="#cocktails" class="nav-link">Bar</a>
+      <a href="#experience" class="nav-link">Experience</a>
+      <a href="#menu" class="nav-link">Menu</a>
+      <a href="#reviews" class="nav-link">Reviews</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <a href="#reservation" class="nav-cta">Reserve</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-content reveal">
+      <p class="eyebrow">SO. The Sky Kitchen &mdash; Jubilee Hills</p>
+      <h1>Dining under <em>a thousand lanterns.</em></h1>
+      <p>A garden-style rooftop where street flavour meets the open sky &mdash; North Indian, Chinese &amp; Continental plates served under candlelight and the Hyderabad skyline.</p>
+      <div class="hero-actions">
+        <a href="#reservation" class="btn btn-primary">Reserve a Table</a>
+        <a href="#menu" class="btn btn-ghost">Explore Menu</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="line"></div></div>
+</section>
+
+<!-- ===== QUICK INFO ===== -->
+<div class="info-strip">
+  <div class="container">
+    <div class="info-grid reveal">
+      <div class="info-item">
+        <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <div><div class="info-label">Hours</div><div class="info-value">Daily &middot; 12 PM &ndash; Late</div></div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-5.5-7-11a7 7 0 1114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+        <div><div class="info-label">Location</div><div class="info-value">Jubilee Hills, Road No. 92</div></div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.13.93.36 1.84.69 2.71a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.87.33 1.78.56 2.71.69A2 2 0 0122 16.92z"/></svg></div>
+        <div><div class="info-label">Reserve</div><div class="info-value">040 2355 8004</div></div>
+      </div>
+      <div class="info-item offer">
+        <div class="info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l1.5 3.5L17 7l-3.5 1.5L12 12l-1.5-3.5L7 7l3.5-1.5L12 2z"/><path d="M19 15l.8 1.9L22 18l-2.2 1.1L19 21l-.8-1.9L16 18l2.2-1.1L19 15z"/><path d="M5 13l.6 1.4L7 15l-1.4.6L5 17l-.6-1.4L3 15l1.4-.6L5 13z"/></svg></div>
+        <div><div class="info-label">Offer</div><div class="info-value">Flat 25% Off Total Bill</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-copy reveal">
+        <p class="eyebrow">SO. Hyderabad</p>
+        <h2>Where <span class="accent">street flavour</span> meets the open sky.</h2>
+        <p>We cook the way you'd find in a Lucknow lane, a Bombay maidaan, a Sichuan wok station &mdash; then bring it up four floors, into a candle-lit garden where the city becomes background music.</p>
+        <p>Every plate carries the spirit of where it came from: bold, generous, unhurried &mdash; served beneath strings of lantern light with the skyline as your backdrop.</p>
+        <div class="about-stats">
+          <div class="about-stat"><strong>15+</strong><span>Kitchens</span></div>
+          <div class="about-stat"><strong>4th</strong><span>Floor Garden</span></div>
+          <div class="about-stat"><strong>4.0</strong><span>Guest Rating</span></div>
+        </div>
+      </div>
+      <div class="about-visual reveal">
+        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1000&auto=format&fit=crop" alt="Candlelit rooftop dining table at SO. The Sky Kitchen with brass thali and lantern light">
+        <div class="about-tag">SO. Hyderabad &mdash; Rooftop Garden</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SIGNATURE DISHES ===== -->
+<section id="dishes">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Signatures</p>
+      <h2>Tonight's Must-Try</h2>
+      <p>Six dishes that define the SO. table &mdash; from Awadhi kebabs to slow-cooked biryani, each plated for the rooftop.</p>
+    </div>
+    <div class="dish-grid">
+
+      <div class="dish-card reveal">
+        <div class="dish-img">
+          <span class="dish-tag">Bhatti</span>
+          <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?q=80&w=900&auto=format&fit=crop" alt="Galouti Kebab with grilled paneer and onions on skewers">
+        </div>
+        <div class="dish-body">
+          <div class="dish-title-row"><h3>Galouti Kebab</h3><span class="dish-price">&#8377;710</span></div>
+          <p>So soft it melts in your mouth &mdash; first created for nobles who preferred not to chew.</p>
+        </div>
+      </div>
+
+      <div class="dish-card reveal">
+        <div class="dish-img">
+          <span class="dish-tag">Desi Curry</span>
+          <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?q=80&w=900&auto=format&fit=crop" alt="Butter Chicken Makhani with naan and biryani on a brass thali">
+        </div>
+        <div class="dish-body">
+          <div class="dish-title-row"><h3>Butter Chicken Makhani</h3><span class="dish-price">&#8377;650</span></div>
+          <p>Creamy tomato gravy with the slow pungency of fennel &amp; fenugreek.</p>
+        </div>
+      </div>
+
+      <div class="dish-card reveal">
+        <div class="dish-img">
+          <span class="dish-tag">Bhatti</span>
+          <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?q=80&w=900&auto=format&fit=crop" alt="Bhatti Da Paneer cubes grilled with smoky spices">
+        </div>
+        <div class="dish-body">
+          <div class="dish-title-row"><h3>Bhatti Da Paneer</h3><span class="dish-price">&#8377;620</span></div>
+          <p>Charcoal-fired cottage cheese, marinated overnight in roasted chilli &amp; mustard oil.</p>
+        </div>
+      </div>
+
+      <div class="dish-card reveal">
+        <div class="dish-img">
+          <span class="dish-tag">Signature</span>
+          <img src="https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?q=80&w=900&auto=format&fit=crop" alt="Dum Ka Mutton Biryani served in a copper handi with raita">
+        </div>
+        <div class="dish-body">
+          <div class="dish-title-row"><h3>Dum Ka Mutton Biryani</h3><span class="dish-price">&#8377;780</span></div>
+          <p>Sealed and slow-cooked over embers &mdash; tender mutton, fragrant rice, a whisper of saffron.</p>
+        </div>
+      </div>
+
+      <div class="dish-card reveal">
+        <div class="dish-img">
+          <span class="dish-tag">Tandoor</span>
+          <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?q=80&w=900&auto=format&fit=crop" alt="Tandoori Jheenga, grilled prawns with lemon and onions">
+        </div>
+        <div class="dish-body">
+          <div class="dish-title-row"><h3>Tandoori Jheenga</h3><span class="dish-price">&#8377;895</span></div>
+          <p>Jumbo prawns kissed by the tandoor, finished with kasuri methi butter.</p>
+        </div>
+      </div>
+
+      <div class="dish-card reveal">
+        <div class="dish-img">
+          <span class="dish-tag">Dessert</span>
+          <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=900&auto=format&fit=crop" alt="Molten Hot Choco Cake with melting chocolate centre and vanilla ice cream">
+        </div>
+        <div class="dish-body">
+          <div class="dish-title-row"><h3>Molten Hot Choco Cake</h3><span class="dish-price">&#8377;395</span></div>
+          <p>Warm dark chocolate cake with a lava centre, vanilla ice cream melting at the edges.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== COCKTAILS ===== -->
+<section class="cocktail-section" id="cocktails">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">From the Bar</p>
+      <h2>Signature Cocktails</h2>
+      <p>Crafted under string lights, served with smoke, citrus and a slow Hyderabad evening.</p>
+    </div>
+    <div class="cocktail-grid reveal">
+
+      <div class="cocktail-card">
+        <div class="cocktail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 4h14l-7 9v7m-3 0h6"/><path d="M7 4l5 6.5L17 4"/></svg></div>
+        <h3>Bitter Bhangda</h3>
+        <p>A bittersweet build of bourbon, amaro and a smoked citrus twist.</p>
+        <div class="cocktail-price">&#8377;695</div>
+      </div>
+
+      <div class="cocktail-card">
+        <div class="cocktail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 4h14l-7 9v7m-3 0h6"/><path d="M7 4l5 6.5L17 4"/></svg></div>
+        <h3>Gold Hunter</h3>
+        <p>Whisky, honey and saffron syrup, finished with a flamed orange peel.</p>
+        <div class="cocktail-price">&#8377;750</div>
+      </div>
+
+      <div class="cocktail-card">
+        <div class="cocktail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 4h12l-1.5 16h-9L6 4z"/><path d="M6 9h12"/></svg></div>
+        <h3>Refreshing Rita</h3>
+        <p>Tequila, fresh lime, watermelon and a tajin rim &mdash; bright and citrus-forward.</p>
+        <div class="cocktail-price">&#8377;675</div>
+      </div>
+
+      <div class="cocktail-card">
+        <div class="cocktail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 4h12l-1.5 16h-9L6 4z"/><path d="M6 9h12"/></svg></div>
+        <h3>Smooth Talker</h3>
+        <p>Vodka, elderflower and soda over clear ice, garnished with mint.</p>
+        <div class="cocktail-price">&#8377;640</div>
+      </div>
+
+      <div class="cocktail-card">
+        <div class="cocktail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 4h12l-1.5 16h-9L6 4z"/><path d="M6 9h12"/></svg></div>
+        <h3>Ruby Russ</h3>
+        <p>Gin, hibiscus, fresh pomegranate and a dash of rose water.</p>
+        <div class="cocktail-price">&#8377;710</div>
+      </div>
+
+      <div class="cocktail-card">
+        <div class="cocktail-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 10h14v9a1 1 0 01-1 1H6a1 1 0 01-1-1v-9z"/><path d="M5 10l2-6h10l2 6"/></svg></div>
+        <h3>Bourbon Botanical</h3>
+        <p>Jack Daniel's, homemade orange marmalade, delicately smoked pinewood.</p>
+        <div class="cocktail-price">&#8377;725</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXPERIENCE ===== -->
+<section class="experience" id="experience">
+  <div class="experience-wrap">
+    <div class="experience-copy reveal">
+      <p class="eyebrow">The Experience</p>
+      <h2>A rooftop built for slow evenings.</h2>
+      <p>Garden-style alcoves, low candles, lanterns strung between the planters and a skyline that lights up as the sun drops. Bring the people you love eating with.</p>
+      <div class="experience-features">
+        <div class="feature-pill"><div class="ficon">&#127860;</div><span>15+ Kitchens</span></div>
+        <div class="feature-pill"><div class="ficon">&#127863;</div><span>Full Bar</span></div>
+        <div class="feature-pill"><div class="ficon">&#10024;</div><span>Romantic Vibe</span></div>
+      </div>
+      <a href="#reservation" class="btn btn-primary">Hold My Table</a>
+    </div>
+    <div class="experience-visual reveal">
+      <img src="https://images.unsplash.com/photo-1571805618894-3a7af6caf1c0?q=80&w=1200&auto=format&fit=crop" alt="String lights and lanterns hanging over the rooftop garden at dusk">
+    </div>
+  </div>
+</section>
+
+<!-- ===== FULL MENU ===== -->
+<section id="menu">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">The Menu</p>
+      <h2>A Rooftop Tour of Flavour</h2>
+      <p>Prices in INR. Taxes as applicable. Availability may vary by season.</p>
+    </div>
+
+    <div class="menu-search reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input type="text" id="menuSearch" placeholder="Search the menu &mdash; e.g. paneer, biryani, cocktail...">
+    </div>
+
+    <div class="menu-tabs reveal">
+      <button class="menu-tab active" data-tab="kitchen">Food Menu</button>
+      <button class="menu-tab" data-tab="bar">Bar &amp; Beverages</button>
+    </div>
+
+    <!-- KITCHEN PANEL -->
+    <div class="menu-panel active reveal" id="panel-kitchen">
+      <p style="text-align:center; color:var(--muted); font-style:italic; font-family:var(--display); font-size:1.1rem; margin-bottom:50px;">Chakna &middot; Naram/Garam &middot; Snacks &middot; Bhatti &middot; Desi Curry &middot; Uttari Swaad &middot; Awadhi Biryani &middot; Dal &middot; Roti Ki Tokri &middot; Street Style Classic &middot; Chinese Gravy &middot; Make Your Own Wok Meal &middot; Saath-Swaad &middot; Videshi Tadka &middot; Meetha</p>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Chakna</div><div class="menu-category-sub">Small bites to share</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Phalli Masala <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Roasted peanuts: Kachumber salad.</div></div><div class="menu-item-price">&#8377;245</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Corn Karampodi <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Steamed: Buttery: Spicy.</div></div><div class="menu-item-price">&#8377;285</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Fried and Spiced Aloo <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Green and tamarind chutney.</div></div><div class="menu-item-price">&#8377;275</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Lotus Stem <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Crispy: South Indian style.</div></div><div class="menu-item-price">&#8377;320</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Schezwan Chicken <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Crispy: Spicy.</div></div><div class="menu-item-price">&#8377;325</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Naram / Garam</div><div class="menu-category-sub">Soups & sips</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Mattha <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Refreshing spiced buttermilk tempered with pudina and roasted cumin.</div></div><div class="menu-item-price">&#8377;150</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Kesar Lassi <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">A rich, creamy yogurt blend infused with saffron.</div></div><div class="menu-item-price">&#8377;290</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Tamatar Tulsi Shorba <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Tempered with cumin served, crisp butter rusk on the side.</div></div><div class="menu-item-price">&#8377;330</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Fresh Corn</div><div class="menu-item-desc">Choose between Veg or Chicken.</div></div><div class="menu-item-price">&#8377;320</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Manchow</div><div class="menu-item-desc">Crispy fried noodles on side. Choose: Veg or Chicken.</div></div><div class="menu-item-price">&#8377;325</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Spicy Green</div><div class="menu-item-desc">An aromatic rustic soup, Choose veggies Or Chicken.</div></div><div class="menu-item-price">&#8377;325</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Snacks</div><div class="menu-category-sub">Starters & small plates</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Maska Pav</div><div class="menu-item-desc">Scrambled Paneer Or Egg Served with Maska Pav.</div></div><div class="menu-item-price">&#8377;375</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Awadhi Dahi Ke Kebab <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Prepared in hung yogurt with roasted Bengal gram, yellow chillies & coriander.</div></div><div class="menu-item-price">&#8377;550</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Paneer Chilly <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">All-time classic.</div></div><div class="menu-item-price">&#8377;495</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Manchurian <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Crispy veggie balls in a spicy sauce.</div></div><div class="menu-item-price">&#8377;490</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Crispy Corn <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Tossed with chilly: garlic and spring onions.</div></div><div class="menu-item-price">&#8377;490</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Cheese Chilly Toast <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Melted processed cheese: Fresh chopped green chillies.</div></div><div class="menu-item-price">&#8377;485</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Chicken Wings <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Chilly Peppery Sauce Crispy: fried  Tandoori style with bold smoky flavours.</div></div><div class="menu-item-price">&#8377;495</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Chicken Chilly <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Tossed in homemade chilli tangy sauce.</div></div><div class="menu-item-price">&#8377;510</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Saucy Sliced Chicken <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Oyster sauce, chillies, capsicum, classic Indo-Chinese Style.</div></div><div class="menu-item-price">&#8377;550</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Butter Garlic Prawn <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Simmered in creamy buttery sauce, red pepper.</div></div><div class="menu-item-price">&#8377;595</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Prawn Pakora <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Sweet Chilli mayo on side.</div></div><div class="menu-item-price">&#8377;585</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Fish in Peppery Sauce <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">A bold, savoury Flavour.</div></div><div class="menu-item-price">&#8377;575</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Shikari Gosht <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Mutton shanks cooked with flavours of red chillies and garlic.</div></div><div class="menu-item-price">&#8377;750</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Bhatti</div><div class="menu-category-sub">Tandoor & charcoal grills</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Bhatti Da Paneer <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Marinated in a special spice mix and cooked to perfection.</div></div><div class="menu-item-price">&#8377;550</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Paneer De Tikki <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Marinated with herbs and spices. Served with onion, capsicum.</div></div><div class="menu-item-price">&#8377;550</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Tandoori Broccoli <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Packed in a batter of cottage cheese, milk cake, pimentos, ginger.</div></div><div class="menu-item-price">&#8377;580</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Tandoori Mushroom <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Stuffed with Cumin-Spiced combination of cottage cheese, potatoes & pistachios.</div></div><div class="menu-item-price">&#8377;550</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Bhatti Ke Aloo <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Char-grilled in Tandoor, pressed flat, tossed in spices.</div></div><div class="menu-item-price">&#8377;510</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Murgh Malai Kebab <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Marinade of cumin and black pepper in rich cream, cheddar, fresh coriander.</div></div><div class="menu-item-price">&#8377;595</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Murgh Ke Sooley <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Marinade of royal cumin and a hint of fresh coriander.</div></div><div class="menu-item-price">&#8377;595</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Bhatti Da Murga <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Legs of chicken marinated overnight in hung curd, Indian spices.</div></div><div class="menu-item-price">&#8377;585</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Mahi-e-Tandoor <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Mural marinated in yogurt, ajwain, and aromatic spices.</div></div><div class="menu-item-price">&#8377;600</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Tandoori Jheenga <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Marinated in a refreshing citric blend of lemon juice, ajwain and green cardamom.</div></div><div class="menu-item-price">&#8377;695</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Galouti <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">A kebab so soft that it melts in your mouth. Created for leisure-loving nobles who preferred not to chew.</div></div><div class="menu-item-price">&#8377;710</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Desi Curry</div><div class="menu-category-sub">North Indian mains</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Makhani &mdash; Butter Chicken <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Creamy tomato gravy brought to a pleasing pungency with fennel and fenugreek.</div></div><div class="menu-item-price">&#8377;650</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Makhani &mdash; Paneer <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Creamy tomato gravy brought to a pleasing pungency with fennel and fenugreek.</div></div><div class="menu-item-price">&#8377;590</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Labaabdaar &mdash; Chicken Tikka <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Gravy of tomato &amp; chopped masala: finished with cream and kasuri methi.</div></div><div class="menu-item-price">&#8377;650</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Labaabdaar &mdash; Paneer <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Gravy of tomato &amp; chopped masala: finished with cream and kasuri methi.</div></div><div class="menu-item-price">&#8377;590</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Kadhai &mdash; Murgh <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Smoky gravy of bell peppers and tomatoes, accented with coriander seeds and freshly pounded black peppercorns.</div></div><div class="menu-item-price">&#8377;650</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Kadhai &mdash; Paneer <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Smoky gravy of bell peppers and tomatoes, accented with coriander seeds and freshly pounded black peppercorns.</div></div><div class="menu-item-price">&#8377;590</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Kadhai &mdash; Sabji <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Smoky gravy of bell peppers and tomatoes, accented with coriander seeds and freshly pounded black peppercorns.</div></div><div class="menu-item-price">&#8377;550</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Shahi &mdash; Paneer <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Luxurious yet comforting gravy with a smooth cashew base and gentle Indian spices.</div></div><div class="menu-item-price">&#8377;590</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Shahi &mdash; Chicken <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Luxurious yet comforting gravy with a smooth cashew base and gentle Indian spices.</div></div><div class="menu-item-price">&#8377;650</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Homestyle &mdash; Chicken <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Household preparation in typical desi style.</div></div><div class="menu-item-price">&#8377;625</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Homestyle &mdash; Fish Kalia <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Household preparation in typical desi style.</div></div><div class="menu-item-price">&#8377;650</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Homestyle &mdash; So Speciality Mutton <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Household preparation in typical desi style.</div></div><div class="menu-item-price">&#8377;710</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Uttari Swaad</div><div class="menu-category-sub">Flavours of the north</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Subz Panchmel <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Seasonal vegetables simmered in a rich yogurt sauce redolent of green cardamom, dried ginger and fennel seeds.</div></div><div class="menu-item-price">&#8377;595</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Sarson Ka Saag &amp; Makke Ki Roti <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">The evergreen mustard leaf delicacy &mdash; cooked in earthenware pots with radish leaves, spinach, bathua, ginger, rice, gram flour and a dash of mustard oil.</div></div><div class="menu-item-price">&#8377;750</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Yakhni Pulao <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Yakhni Pulao from Lucknow and the Awadhi region. One pot dish of vegetables and rice cooked together and delicately spiced. Served with mixed raita.</div></div><div class="menu-item-price">&#8377;640</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Awadhi Biryani</div><div class="menu-category-sub">Slow-cooked on dum</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Nizami Tarkari <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">The fragrant combination of aromatic rice, enriched with the delicate notes of saffron, kewra and spices &mdash; cooked on dum in sealed terracotta pots.</div></div><div class="menu-item-price">&#8377;650</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Dum Ka Chicken <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">The fragrant combination of aromatic rice, enriched with the delicate notes of saffron, kewra and spices &mdash; cooked on dum in sealed terracotta pots.</div></div><div class="menu-item-price">&#8377;720</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Dum Ka Mutton <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">The fragrant combination of aromatic rice, enriched with the delicate notes of saffron, kewra and spices &mdash; cooked on dum in sealed terracotta pots.</div></div><div class="menu-item-price">&#8377;790</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Dal</div><div class="menu-category-sub">Lentils & rice</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Dal &mdash; with Rice <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;550</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Dal &mdash; with Rice <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;595</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Rice <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;280</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Rice <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;250</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Roti Ki Tokri</div><div class="menu-category-sub">Fresh from the tandoor</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Tandoori <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">With a choice of butter.</div></div><div class="menu-item-price">&#8377;120</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Naan <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">With a choice of butter, plain, and garlic.</div></div><div class="menu-item-price">&#8377;165</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Paratha <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">With a choice of butter, plain, and garlic. Mirchi / Pudina / Ajwain / Methi.</div></div><div class="menu-item-price">&#8377;155</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Bharmeh Amritsari Kulche <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Stuffed with paneer, potatoes, cauliflower, onion, or a combination of all four.</div></div><div class="menu-item-price">&#8377;260</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Missi <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;140</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Makke <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;130</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Anda Kulche <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Stuffed with scrambled eggs, onions, and Indian spices.</div></div><div class="menu-item-price">&#8377;260</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Street Style Classic</div><div class="menu-category-sub">Noodles & fried rice</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Hakka Noodles &mdash; Veg <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Traditional street style noodles stir-fried with cabbage, green pepper and onion.</div></div><div class="menu-item-price">&#8377;460</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Hakka Noodles &mdash; Egg <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Traditional street style noodles stir-fried with cabbage, green pepper and onion.</div></div><div class="menu-item-price">&#8377;475</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Hakka Noodles &mdash; Chicken <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Traditional street style noodles stir-fried with cabbage, green pepper and onion.</div></div><div class="menu-item-price">&#8377;510</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Hakka Noodles &mdash; Prawn <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Traditional street style noodles stir-fried with cabbage, green pepper and onion.</div></div><div class="menu-item-price">&#8377;545</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Fried Rice &mdash; Vegetable <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Generously tossed with bits of corn, carrot and spring onion. Also available in burnt garlic flavour.</div></div><div class="menu-item-price">&#8377;460</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Fried Rice &mdash; Egg <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Generously tossed with bits of corn, carrot and spring onion. Also available in burnt garlic flavour.</div></div><div class="menu-item-price">&#8377;475</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Fried Rice &mdash; Chicken <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Generously tossed with bits of corn, carrot and spring onion. Also available in burnt garlic flavour.</div></div><div class="menu-item-price">&#8377;510</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Fried Rice &mdash; Prawn <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Generously tossed with bits of corn, carrot and spring onion. Also available in burnt garlic flavour.</div></div><div class="menu-item-price">&#8377;545</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Chinese Gravy</div><div class="menu-category-sub">Wok-tossed mains</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Hot Garlic Sauce &mdash; Cottage Cheese <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Fiery garlic sauce blended with red chilli and savoury spices.</div></div><div class="menu-item-price">&#8377;575</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Hot Garlic Sauce &mdash; Chicken <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Fiery garlic sauce blended with red chilli and savoury spices.</div></div><div class="menu-item-price">&#8377;595</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Hot Garlic Sauce &mdash; Fish <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Fiery garlic sauce blended with red chilli and savoury spices.</div></div><div class="menu-item-price">&#8377;615</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Hot Garlic Sauce &mdash; Prawns <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Fiery garlic sauce blended with red chilli and savoury spices.</div></div><div class="menu-item-price">&#8377;645</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Manchurian &mdash; Veggie Balls <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Tangy, umami-rich sauce with bold garlic and pepper notes.</div></div><div class="menu-item-price">&#8377;575</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Manchurian &mdash; Chicken Balls <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Tangy, umami-rich sauce with bold garlic and pepper notes.</div></div><div class="menu-item-price">&#8377;595</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Schezwan Sauce &mdash; Paneer <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">A fiery, aromatic blend of red chillies, garlic, and house seasoning.</div></div><div class="menu-item-price">&#8377;575</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Schezwan Sauce &mdash; Chicken <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">A fiery, aromatic blend of red chillies, garlic, and house seasoning.</div></div><div class="menu-item-price">&#8377;595</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Schezwan Sauce &mdash; Fish <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">A fiery, aromatic blend of red chillies, garlic, and house seasoning.</div></div><div class="menu-item-price">&#8377;615</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Schezwan Sauce &mdash; Prawns <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">A fiery, aromatic blend of red chillies, garlic, and house seasoning.</div></div><div class="menu-item-price">&#8377;645</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Make Your Own Wok Meal</div><div class="menu-category-sub">Build your bowl</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Exotic Vegetable <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Choose your sauce and mains &mdash; our chef will serve your wok box in his signature style with a selection of vegetables and condiments.</div></div><div class="menu-item-price">&#8377;550</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Paneer / Tofu <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Choose your sauce and mains &mdash; our chef will serve your wok box in his signature style with a selection of vegetables and condiments.</div></div><div class="menu-item-price">&#8377;595</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Egg <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Choose your sauce and mains &mdash; our chef will serve your wok box in his signature style with a selection of vegetables and condiments.</div></div><div class="menu-item-price">&#8377;595</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Chicken <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Choose your sauce and mains &mdash; our chef will serve your wok box in his signature style with a selection of vegetables and condiments.</div></div><div class="menu-item-price">&#8377;650</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Prawns <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Choose your sauce and mains &mdash; our chef will serve your wok box in his signature style with a selection of vegetables and condiments.</div></div><div class="menu-item-price">&#8377;750</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Saath-Swaad</div><div class="menu-category-sub">Accompaniments</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Roasted Papad <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;95</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Masala Papad <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Papads topped with a spicy mix of onions, tomatoes, and green chilli, sprinkled with chaat masala.</div></div><div class="menu-item-price">&#8377;215</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Raita <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Choice of boondi, cucumber, or tomato &amp; onion.</div></div><div class="menu-item-price">&#8377;250</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Green Salad <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;250</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Videshi Tadka</div><div class="menu-category-sub">Global plates</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Au-Gratin <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">A vibrant mix of vegetables tossed in a mildly spiced, creamy masala sauce, layered with cheese and baked till perfectly golden.</div></div><div class="menu-item-price">&#8377;600</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Macaroni Street Pot <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Macaroni baked with vegetables and cheese &mdash; a desi-style comfort dish.</div></div><div class="menu-item-price">&#8377;600</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Grilled Chicken Breast with Lemon, Garlic &amp; Herb <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Served with mashed potato, saut&eacute;ed mushrooms and creamy cheesy dip.</div></div><div class="menu-item-price">&#8377;750</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Spicy Grilled Fish <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">Marinated fish fillet with chilly paste, garlic and aromatic herbs. Garnished with mashed potatoes, stir-fried exotic vegetables and spicy olive oil.</div></div><div class="menu-item-price">&#8377;790</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Pizza &mdash; Veg <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">A crisp base, baked with our signature sauce and cheese.</div></div><div class="menu-item-price">&#8377;625</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Pizza &mdash; Chicken <span class="veg-tag nonveg">&#9679; Non-Veg</span></div><div class="menu-item-desc">A crisp base, baked with our signature sauce and cheese.</div></div><div class="menu-item-price">&#8377;675</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Meetha</div><div class="menu-category-sub">Something sweet</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Gulab Jamun <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;425</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Saffron Creme Brulee <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">A delightful sweet in crunchy and custardy saffron flavour.</div></div><div class="menu-item-price">&#8377;400</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Halwa &mdash; Seasonal <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">(Ask for the type)</div></div><div class="menu-item-price">&#8377;405</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Ice Cream (2 Scoops) <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;350</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Molten Hot Choco Cake <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Baked molten dark chocolate served with a scoop of vanilla ice cream.</div></div><div class="menu-item-price">&#8377;425</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Celebration Cake <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;650</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- BAR PANEL -->
+    <div class="menu-panel reveal" id="panel-bar">
+      <p style="text-align:center; color:var(--muted); font-style:italic; font-family:var(--display); font-size:1.1rem; margin-bottom:50px;">Signature &amp; Classic Cocktails &middot; Wines &middot; Beer &middot; Spirits &middot; Shooters &middot; Smoothies &middot; Mocktails &middot; Aerated Drinks</p>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Signature Cocktail</div><div class="menu-category-sub">House creations</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Bitter Bhangda</div><div class="menu-item-desc">Twist on the classic vodka sour.</div></div><div class="menu-item-price">&#8377;650</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Gold Hunter</div><div class="menu-item-desc">Combination of fresh orange peel, tequila married with fresh kaffir lime scented orange juice.</div></div><div class="menu-item-price">&#8377;670</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Refreshing Rita</div><div class="menu-item-desc">A classic margarita made with tequila and lime, infused with fresh mint and cucumber.</div></div><div class="menu-item-price">&#8377;675</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Smooth Talker</div><div class="menu-item-desc">Watermelon juice combined with smooth vanilla extract and a medley of Bombay Sapphire.</div></div><div class="menu-item-price">&#8377;685</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Ruby Russ</div><div class="menu-item-desc">Blend of white rum and kokum.</div></div><div class="menu-item-price">&#8377;685</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Summer Vacation</div><div class="menu-item-desc">Sweet Thai tamarind, homemade saffron jam, gin, lime juice, orange juice.</div></div><div class="menu-item-price">&#8377;695</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Red Velvet</div><div class="menu-item-desc">Whiskey infused with floral hibiscus petal, classic honey glazed vanilla.</div></div><div class="menu-item-price">&#8377;710</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Bourbon Botanical</div><div class="menu-item-desc">Jack Daniel's, homemade orange marmalade, delicately smoked pinewood chips.</div></div><div class="menu-item-price">&#8377;725</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Classic Cocktails</div><div class="menu-category-sub">Timeless pours</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Long Island Iced Tea</div><div class="menu-item-desc">Classic mix of five white spirits topped with cola.</div></div><div class="menu-item-price">&#8377;725</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Picante</div><div class="menu-item-desc">Tequila infused with Indian red-mirch spice and citrus for a fiery, luxe finish.</div></div><div class="menu-item-price">&#8377;620</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Sangria</div><div class="menu-item-desc">Classic sangria made with red wine and spices.</div></div><div class="menu-item-price">&#8377;650</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Old Fashion</div><div class="menu-item-desc">Classic American whiskey based cocktail finished with orange zest.</div></div><div class="menu-item-price">&#8377;625</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Martini</div><div class="menu-item-desc">Classic gin based concoction served with green olive.</div></div><div class="menu-item-price">&#8377;625</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Cosmopolitan</div><div class="menu-item-desc">Vodka, triple-sec, splash of lime juice and cranberry juice served with a twist of lemon.</div></div><div class="menu-item-price">&#8377;625</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Gimlet</div><div class="menu-item-desc">Gin, sweet lime juice and garnished chopped mint.</div></div><div class="menu-item-price">&#8377;600</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Margarita</div><div class="menu-item-desc">Tequila and Cointreau with a splash of lemon served in a salt rim glass.</div></div><div class="menu-item-price">&#8377;615</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Bloody Mary</div><div class="menu-item-desc">Vodka, tomato juice with a splash of Tabasco and Worcestershire sauce served in a salt rimmed glass.</div></div><div class="menu-item-price">&#8377;595</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Mojito</div><div class="menu-item-desc">White rum with fresh mint, lemon chunks and brown sugar topped with lemonade.</div></div><div class="menu-item-price">&#8377;595</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Daiquiri</div><div class="menu-item-desc">Classic white rum based cocktail for the sweet tooth.</div></div><div class="menu-item-price">&#8377;595</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Red Wine</div><div class="menu-category-sub">By the bottle</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Folonari Chianti DOCG <span style="font-style:italic;">(Italian)</span></div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;6,000</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Folonari Montepulciano <span style="font-style:italic;">(Italian)</span></div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;5,500</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Jacob's Creek Shiraz Cabernet <span style="font-style:italic;">(Australian)</span></div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;4,250</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Sula Cabernet <span style="font-style:italic;">(Indian)</span></div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;2,750</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Fratelli Classic Merlot <span style="font-style:italic;">(Indian)</span></div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;2,350</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">White Wine</div><div class="menu-category-sub">By the bottle</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Folonari Pinot Grigio <span style="font-style:italic;">(Italian)</span></div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;5,500</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Jacob's Creek Chardonnay <span style="font-style:italic;">(Australian)</span></div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;4,250</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Sula Chenin Blanc <span style="font-style:italic;">(Indian)</span></div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;2,500</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Rose Wine</div><div class="menu-category-sub">By the bottle</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Sula Zinfandel</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;2,500</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Sparkling Wine</div><div class="menu-category-sub">By the bottle</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Sula Brut</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;4,000</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Cinzano Prosecco</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;5,500</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Beer</div><div class="menu-category-sub">Bottled & draught</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Corona</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;625</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Hoegaarden</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;725</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Budweiser</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;375</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Kingfisher Ultra</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;395</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Kingfisher Premium</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;350</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Bacardi Breezer</div><div class="menu-category-sub">Ready to pour</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Cranberry / Blackberry / Jamaican Passion</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;360</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Whiskey</div><div class="menu-category-sub">By the peg</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Glenfiddich 12 Yrs</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;750</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Monkey Shoulder</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;745</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Black Label</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;525</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Chivas Regal 12 Yrs</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;525</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Jack Daniel's</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;450</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Jameson</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;410</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Black Dog 12 Yrs</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;395</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">100 Pipers 12 Yrs</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;385</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Vodka</div><div class="menu-category-sub">By the peg</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Grey Goose Vodka</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;450</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Absolut Vodka</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;325</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Rum</div><div class="menu-category-sub">By the peg</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Bacardi</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;295</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Old Monk</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;245</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Gin</div><div class="menu-category-sub">By the peg</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Monkey 47</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;795</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Bombay Sapphire</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;325</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Stranger &amp; Sons</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;325</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Brandy</div><div class="menu-category-sub">By the peg</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Mansion House</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;245</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Tequila</div><div class="menu-category-sub">By the peg</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Jose Cuervo Silver</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;485</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Liquor</div><div class="menu-category-sub">By the peg</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">J&auml;germeister</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;625</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Baileys</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;545</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Kahlua</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;450</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Campari</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;400</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Shooters</div><div class="menu-category-sub">Quick pours</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Jagerbomb</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;910</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">B-52</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;850</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Kamikaze</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;625</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Smoothies</div><div class="menu-category-sub">Thick & creamy</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Nutella Oreo Shake <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Nutella, Oreo biscuit, milk and vanilla ice cream, garnished with Oreo biscuit and whipped cream.</div></div><div class="menu-item-price">&#8377;410</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Chocolate Brownie Shake <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Brownie, milk, vanilla ice cream, garnished with brownie.</div></div><div class="menu-item-price">&#8377;410</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Mocktails</div><div class="menu-category-sub">Non-alcoholic</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Mango Lavender Slush <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Blend of mango juice, lavender syrup, touch of fresh cream.</div></div><div class="menu-item-price">&#8377;395</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Watermelon &amp; Fennel Spritz <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Mixed with watermelon, lemon, and fresh fennel leaves, topped with sprite.</div></div><div class="menu-item-price">&#8377;395</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Kokum &amp; Plum Rickey <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Blend of kokum, plum puree, dash of green chilli.</div></div><div class="menu-item-price">&#8377;395</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Berry Paradise <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Blueberry, fresh mint leaves &amp; a dash of cranberry juice, topped with sparkling water.</div></div><div class="menu-item-price">&#8377;395</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Cucumber Basil Cooler <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Cold cucumber muddled with fresh basil leaves, finished with soda &amp; lemonade.</div></div><div class="menu-item-price">&#8377;395</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Virgin Spicy Guava Margarita <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Fresh guava, splash of jalapeno &amp; brine, served with spiced rim glass.</div></div><div class="menu-item-price">&#8377;395</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Anarkali <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Fresh pomegranate, grenadine syrup &amp; a dash of cranberry juice.</div></div><div class="menu-item-price">&#8377;395</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Orange Blossom <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Orange, parsley with a hint of saffron topped with lemonade.</div></div><div class="menu-item-price">&#8377;395</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Tangy Mojito <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Cranberry fizz infused in new tangy mojito.</div></div><div class="menu-item-price">&#8377;370</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Homemade Ginger Ale <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Fresh ginger and lemongrass based concoction topped with lemonade.</div></div><div class="menu-item-price">&#8377;395</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Lemonade <span class="veg-tag veg">&#9679; Veg</span></div><div class="menu-item-desc">Classic / Ginger / Peach / Lavender / Green Apple.</div></div><div class="menu-item-price">&#8377;350</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-category">
+        <div class="menu-category-head">
+          <div><div class="menu-category-title">Aerated Drinks</div><div class="menu-category-sub">Soft drinks & more</div></div>
+          <div class="menu-category-toggle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="menu-category-body">
+          <div class="menu-items">
+            <div class="menu-item"><div><div class="menu-item-name">Red Bull</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;285</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Tonic</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;190</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Ginger Ale</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;190</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Diet Coke</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;190</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Thumbs-Up</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;85</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Coke</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;85</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Sprite</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;85</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Soda</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;75</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Fresh Lime Soda Or Water</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;105</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Canned Juice</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;150</div></div>
+            <div class="menu-item"><div><div class="menu-item-name">Natural Mineral Water Bottle &amp; Services</div><div class="menu-item-desc"></div></div><div class="menu-item-price">&#8377;190</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="menu-no-results" id="menuNoResults">No dishes found &mdash; try a different search.</p>
+  </div>
+</section>
+
+<!-- ===== RESERVATION ===== -->
+<section class="reservation" id="reservation">
+  <div class="container">
+    <div class="res-grid">
+
+      <div class="res-copy reveal">
+        <p class="eyebrow">Reservations</p>
+        <h2>Hold My Table</h2>
+        <p>Reservations are required. We'll confirm by phone within the hour.</p>
+
+        <div class="res-detail">
+          <div class="ricon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-5.5-7-11a7 7 0 1114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+          <div><strong>SO. The Sky Kitchen</strong><span>4th Floor, No. 550-F, Aryans Building, Road No. 92, Jubilee Hills, Hyderabad, Telangana 500033</span></div>
+        </div>
+        <div class="res-detail">
+          <div class="ricon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div><strong>Opens Daily</strong><span>12 PM &ndash; Late</span></div>
+        </div>
+        <div class="res-detail">
+          <div class="ricon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.13.93.36 1.84.69 2.71a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.87.33 1.78.56 2.71.69A2 2 0 0122 16.92z"/></svg></div>
+          <div><strong>Call to Confirm</strong><span>040 2355 8004</span></div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <form class="res-form" id="reservationForm">
+          <div id="formFields">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" placeholder="Aarav Mehta" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" placeholder="+91 98xxx xxxxx" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email (Optional)</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" required>
+              </div>
+              <div class="form-group">
+                <label for="time">Time</label>
+                <select id="time" name="time" required>
+                  <option value="" disabled selected>Select...</option>
+                  <option>12:00 PM</option>
+                  <option>1:00 PM</option>
+                  <option>2:00 PM</option>
+                  <option>7:00 PM</option>
+                  <option>8:00 PM</option>
+                  <option>9:00 PM</option>
+                  <option>10:00 PM</option>
+                  <option>11:00 PM</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="guests">Guests</label>
+                <select id="guests" name="guests" required>
+                  <option value="1">1 guest</option>
+                  <option value="2" selected>2 guests</option>
+                  <option value="3">3 guests</option>
+                  <option value="4">4 guests</option>
+                  <option value="5">5 guests</option>
+                  <option value="6">6 guests</option>
+                  <option value="7+">7+ guests</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="occasion">Occasion (Optional)</label>
+                <select id="occasion" name="occasion">
+                  <option selected>No special occasion</option>
+                  <option>Birthday</option>
+                  <option>Anniversary</option>
+                  <option>Date Night</option>
+                  <option>Celebration</option>
+                  <option>Business Dinner</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="requests">Special Requests</label>
+              <textarea id="requests" name="requests" placeholder="Window table, vegetarian preference, allergies..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary res-submit">Request Reservation</button>
+            <p class="form-note">We'll confirm your table by phone within the hour.</p>
+          </div>
+
+          <div class="form-success" id="formSuccess">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+            <h3>Table Requested</h3>
+            <p>Thank you, <span id="successName">Guest</span>. Our team will call you shortly to confirm your reservation at SO. The Sky Kitchen.</p>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<section id="reviews">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Guest Reviews</p>
+      <h2>Loved Under the Lanterns</h2>
+    </div>
+    <div class="reviews-header reveal">
+      <div class="rating-block">
+        <strong>4.0</strong>
+        <div class="rating-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+        <span>3K+ Reviews</span>
+      </div>
+    </div>
+    <div class="review-grid reveal">
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>"The ambience is unmatched &mdash; lanterns, candles, and that skyline view. The Galouti Kebab melted in our mouths exactly as promised."</p>
+        <div class="review-author">
+          <div class="review-avatar">R</div>
+          <div><strong>Riya Sharma</strong><span>Jubilee Hills, Hyderabad</span></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+        <p>"Bourbon Botanical is worth the trip alone. Smoky, citrusy, beautifully presented. Service was warm and unhurried."</p>
+        <div class="review-author">
+          <div class="review-avatar">K</div>
+          <div><strong>Karthik Reddy</strong><span>Banjara Hills, Hyderabad</span></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>"Took my parents for their anniversary &mdash; the rooftop garden setting made it feel so special. The Dum Ka Mutton Biryani was outstanding."</p>
+        <div class="review-author">
+          <div class="review-avatar">A</div>
+          <div><strong>Ananya Iyer</strong><span>Gachibowli, Hyderabad</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="reveal">
+        <p class="eyebrow">Visit Us</p>
+        <h2 style="font-family:var(--display); font-size:clamp(2.4rem,5vw,3.6rem); font-weight:600; margin-bottom:18px; line-height:1.16;">SO. The Sky Kitchen</h2>
+        <p style="color:var(--muted); font-weight:300; max-width:480px;">A garden-style rooftop in Jubilee Hills serving North Indian, Chinese &amp; global plates under candlelight and the Hyderabad skyline.</p>
+
+        <div class="contact-list">
+          <div class="contact-item">
+            <div class="cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-5.5-7-11a7 7 0 1114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+            <div><h4>Address</h4><p>4th Floor, No. 550-F, Aryans Building, Road No. 92, Jubilee Hills, Hyderabad, Telangana 500033</p></div>
+          </div>
+          <div class="contact-item">
+            <div class="cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.13.93.36 1.84.69 2.71a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.87.33 1.78.56 2.71.69A2 2 0 0122 16.92z"/></svg></div>
+            <div><h4>Phone</h4><p><a href="tel:04023558004">040 2355 8004</a></p></div>
+          </div>
+          <div class="contact-item">
+            <div class="cicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></div>
+            <div><h4>Instagram</h4><p><a href="https://instagram.com/sotheskykitchen" target="_blank" rel="noopener">@sotheskykitchen</a></p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="map-frame reveal">
+        <iframe src="https://www.google.com/maps?q=Jubilee+Hills+Road+No+92+Hyderabad&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map showing SO. The Sky Kitchen location in Jubilee Hills, Hyderabad"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <div class="footer-logo">SO<span>.</span></div>
+        <p>A garden-style rooftop in Jubilee Hills serving North Indian, Chinese &amp; global plates under candlelight and the Hyderabad skyline.</p>
+        <div class="footer-social">
+          <a href="https://instagram.com/sotheskykitchen" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></a>
+          <a href="tel:04023558004" aria-label="Phone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.13.93.36 1.84.69 2.71a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.87.33 1.78.56 2.71.69A2 2 0 0122 16.92z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Explore</h5>
+        <a href="#about">About</a>
+        <a href="#dishes">Signature Dishes</a>
+        <a href="#cocktails">Cocktails</a>
+        <a href="#menu">Full Menu</a>
+      </div>
+      <div class="footer-col">
+        <h5>Visit</h5>
+        <a href="#reservation">Reservations</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact &amp; Map</a>
+      </div>
+      <div class="footer-col">
+        <h5>Hours</h5>
+        <p>Daily &middot; 12 PM &ndash; Late</p>
+        <p>040 2355 8004</p>
+        <p>Flat 25% Off Total Bill</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 SO. The Sky Kitchen &middot; Crafted under the stars.</span>
+      <span>Jubilee Hills, Hyderabad</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== BACK TO TOP ===== -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) { navbar.classList.add('scrolled'); } else { navbar.classList.remove('scrolled'); }
+    if (window.scrollY > 600) { backToTop.classList.add('show'); } else { backToTop.classList.remove('show'); }
+  });
+
+  // Back to top
+  backToTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  // Mobile menu
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    navLinks.classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      menuToggle.classList.remove('active');
+      navLinks.classList.remove('open');
+    });
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Menu tabs
+  document.querySelectorAll('.menu-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+      document.getElementById('menuSearch').value = '';
+      filterMenu('');
+    });
+  });
+
+  // Collapsible categories
+  document.querySelectorAll('.menu-category-head').forEach(head => {
+    head.addEventListener('click', () => {
+      head.parentElement.classList.toggle('open');
+    });
+  });
+  // open first category of each panel by default
+  document.querySelectorAll('.menu-panel').forEach(panel => {
+    const first = panel.querySelector('.menu-category');
+    if (first) first.classList.add('open');
+  });
+
+  // Menu search
+  const menuSearch = document.getElementById('menuSearch');
+  const noResults = document.getElementById('menuNoResults');
+
+  function filterMenu(query) {
+    query = query.trim().toLowerCase();
+    const activePanel = document.querySelector('.menu-panel.active');
+    let anyVisible = false;
+
+    activePanel.querySelectorAll('.menu-category').forEach(cat => {
+      let catHasMatch = false;
+      cat.querySelectorAll('.menu-item').forEach(item => {
+        const name = item.querySelector('.menu-item-name').textContent.toLowerCase();
+        const desc = item.querySelector('.menu-item-desc').textContent.toLowerCase();
+        const match = query === '' || name.includes(query) || desc.includes(query);
+        item.classList.toggle('hidden', !match);
+        if (match) { catHasMatch = true; anyVisible = true; }
+      });
+      cat.style.display = catHasMatch ? '' : 'none';
+      if (query !== '' && catHasMatch) cat.classList.add('open');
+      if (query === '') cat.classList.remove('open');
+    });
+    if (query === '') {
+      const first = activePanel.querySelector('.menu-category');
+      if (first) first.classList.add('open');
+    }
+    noResults.style.display = anyVisible ? 'none' : 'block';
+  }
+
+  menuSearch.addEventListener('input', (e) => filterMenu(e.target.value));
+
+  // Reservation form
+  const form = document.getElementById('reservationForm');
+  const formFields = document.getElementById('formFields');
+  const formSuccess = document.getElementById('formSuccess');
+  const successName = document.getElementById('successName');
+
+  // Set min date to today
+  document.getElementById('date').min = new Date().toISOString().split('T')[0];
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('fullName').value || 'Guest';
+    successName.textContent = name;
+    formFields.style.display = 'none';
+    formSuccess.classList.add('show');
+  });
+</script>
+
+</body>
+</html>
